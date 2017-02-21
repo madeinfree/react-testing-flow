@@ -4,7 +4,8 @@
   "description": "practice reactjs, data flow, flowtype, testing, git message, webpack v2, babel and build a todolist",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "commit": "git-cz"
   },
   "keywords": [
     "reactjs",
@@ -24,6 +25,8 @@
     "babel-loader": "^6.3.2",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
     "enzyme": "^2.7.1",
     "jest": "^18.1.0",
     "react-addons-test-utils": "^15.4.2",
@@ -35,5 +38,10 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
