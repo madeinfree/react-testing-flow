@@ -1,11 +1,14 @@
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path')
 const webpack = require('webpack')
+
+let serverIsRun = false
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: '[name]-bundle.js'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -20,8 +23,37 @@ module.exports = {
     ]
   },
   plugins: [
+    // hidden this when we should watch webpack.
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'server',
+    //   analyzerHost: '127.0.0.1',
+    //   analyzerPort: 8888
+    // }),
     new webpack.LoaderOptionsPlugin({
       debug: true
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks(module, count) {
+        var context = module.context;
+        return context && (context.indexOf('node_modules/react-dom/') === -1 && context.indexOf('node_modules/react/') === -1 && context.indexOf('src') === -1);
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      async: true,
+      filename: 'react-bundle.js',
+      minChunks(module, count) {
+        var context = module.context;
+        return context && (context.indexOf('node_modules/react/') >= 0)
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      async: true,
+      filename: 'react-dom-bundle.js',
+      minChunks(module, count) {
+        var context = module.context;
+        return context && (context.indexOf('node_modules/react-dom/') >= 0);
+      }
     })
   ],
   devtool: '#source-map',
