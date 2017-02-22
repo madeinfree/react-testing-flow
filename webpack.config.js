@@ -23,12 +23,6 @@ module.exports = {
     ]
   },
   plugins: [
-    // hidden this when we should watch webpack.
-    // new BundleAnalyzerPlugin({
-    //   analyzerMode: 'server',
-    //   analyzerHost: '127.0.0.1',
-    //   analyzerPort: 8888
-    // }),
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
