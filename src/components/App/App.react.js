@@ -8,14 +8,19 @@ import List from '../Todos/List.react'
 class App extends Component {
   render() {
     const {
-      addTodo
+      addTodo,
+      todos
     } = this.props
     return (
       <div>
         <h1>Daily Todo List</h1>
         <Input />
-        <Send />
-        <List />
+        <Send
+          onClick={ addTodo }
+        />
+        <List
+          todos={ todos }
+        />
       </div>
     )
   }

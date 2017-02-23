@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { shallow } from 'enzyme'
+import sinon from 'sinon'
 import Send from '../src/components/Todos/Send.react'
 import store from '../src/store/index'
 
@@ -19,13 +20,10 @@ test('render send button', () => {
 })
 
 test('click button to call dispatch', () => {
-  let trigger_number = 0
-  const _onClick = () => {
-    trigger_number += 1
-  }
+  const spy = sinon.spy()
   let send_event = shallow(
-    <Send onClick={ _onClick } />
+    <Send onClick={ spy } />
   )
   send_event.find('button').simulate('click')
-  expect(trigger_number).toEqual(1)
+  expect(spy.called).toBeTruthy()
 })
