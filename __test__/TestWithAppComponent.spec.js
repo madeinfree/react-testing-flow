@@ -5,7 +5,9 @@ import List from '../src/components/Todos/List.react'
 
 test('Test With App Component render child', () => {
   const app = mount(
-    <App />
+    <App
+      edit={{ text: '' }}
+    />
   )
 
   expect(app.find('h1').text()).toEqual('Daily Todo List')
@@ -19,6 +21,7 @@ test('Test with app and list to render children items', () => {
   const app = mount(
     <App
       todos={ mockTodos }
+      edit={{ text: '' }}
     />
   )
 

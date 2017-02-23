@@ -3,22 +3,25 @@ import React, { Component } from 'react'
 class Input extends Component {
   constructor() {
     super();
+  }
 
-    this.state = {
-      text: ''
-    }
-  }
   _onChangeText(e) {
-    this.setState({
-      text: e.target.value
-    })
+    const {
+      updateEdit
+    } = this.props
+
+    updateEdit(e.target.value)
   }
+
   render() {
+    const {
+      text
+    } = this.props
     return (
       <div>
         <input
+          value={ text }
           onChange={ this._onChangeText.bind(this) }
-          value={ this.state.text }
           type='text' />
       </div>
     )

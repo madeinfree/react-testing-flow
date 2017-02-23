@@ -7,16 +7,21 @@ import store from './store'
 import {
   addTodo
 } from '../src/action/todos'
+import {
+  updateEdit
+} from '../src/action/edit'
 
 import App from './components/App/App.react'
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    todos: state.todos,
+    edit: state.edit
   }
 }
 const mapDispatchToProps = {
-  addTodo
+  addTodo,
+  updateEdit
 }
 
 const ConnectApp = connect(

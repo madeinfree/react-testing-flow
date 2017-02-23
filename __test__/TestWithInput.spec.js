@@ -1,24 +1,31 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Input from '../src/components/Todos/Input.react'
+import store from '../src/store/index'
 
-let input
+let input, mockStore
 
-beforeAll(() => {
+beforeEach(() => {
+  mockStore = store
   input = shallow(
-    <Input />
+    <Input
+      text={ mockStore.getState().edit.text }
+      updateEdit={ (text) => mockStore.dispatch({ type: 'UPDATE_EDIT', payload: { text } }) }
+    />
   )
 })
 
-test('Test Input is render and state text is empty', () => {
-  expect(input.state(['text'])).toEqual('')
+test('default value from edit reducer', () => {
+  expect(input.find('input').text()).toEqual('')
 })
 
-test('Typing Input and change text state', () => {
-  input.find('input').simulate('change', {
-    target: {
-      value: 'Running'
-    }
-  })
-  expect(input.state(['text'])).toEqual('Running')
+test('Typing Input and call dispatch updateEdit to change text state', () => {
+  input.find('input').simulate('change', { target: { value: 'Watching' } })
+  const secondInput = shallow(
+    <Input
+      text={ mockStore.getState().edit.text }
+      updateEdit={ (text) => mockStore.dispatch({ type: 'UPDATE_EDIT', payload: { text } }) }
+    />
+  )
+  expect(secondInput.find('input').props().value).toEqual('Watching')
 })

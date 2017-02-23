@@ -9,12 +9,17 @@ class App extends Component {
   render() {
     const {
       addTodo,
-      todos
+      updateEdit,
+      todos,
+      edit
     } = this.props
     return (
       <div>
         <h1>Daily Todo List</h1>
-        <Input />
+        <Input
+          text={ edit.text }
+          updateEdit={ updateEdit }
+        />
         <Send
           onClick={ addTodo }
         />
