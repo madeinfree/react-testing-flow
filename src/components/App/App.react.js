@@ -16,14 +16,16 @@ class App extends Component {
     return (
       <div>
         <h1>Daily Todo List</h1>
-        <Input
-          text={ edit.text }
-          updateEdit={ updateEdit }
-        />
-        <Send
-          text={ edit.text }
-          onClick={ addTodo }
-        />
+        <div style={ { display: 'flex' } }>
+          <Input
+            text={ edit.text }
+            updateEdit={ updateEdit }
+          />
+          <Send
+            text={ edit.text }
+            onClick={ addTodo }
+          />
+        </div>
         <List
           todos={ todos }
         />

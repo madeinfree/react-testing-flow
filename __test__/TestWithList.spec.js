@@ -29,5 +29,20 @@ test('third children', () => {
     />
   )
   expect(children_list.children()).toHaveLength(3)
-  expect(children_list.childAt(1).text()).toEqual('eating')
+  expect(children_list.childAt(0).containsAllMatchingElements([<div>running</div>, <button>x</button>])).toBeTruthy()
+  expect(children_list.childAt(1).containsAllMatchingElements([<div>eating</div>, <button>x</button>])).toBeTruthy()
+  expect(children_list.childAt(2).containsAllMatchingElements([<div>watching</div>, <button>x</button>])).toBeTruthy()
+})
+
+test('list items with remove button', () => {
+  const todos = [
+    { title: 'running' }
+  ]
+  let children_list = shallow(
+    <List
+      todos={ todos }
+    />
+  )
+  expect(children_list.children()).toHaveLength(1)
+  expect(children_list.find('button').exists()).toBeTruthy()
 })

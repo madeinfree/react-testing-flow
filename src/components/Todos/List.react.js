@@ -6,8 +6,11 @@ const List = (props) => {
       {
         props.todos ? props.todos.map((todo, index) => {
           return (
-            <div key={ index }>
-              { todo.title }
+            <div style={ { display: 'flex' } } key={ index }>
+              <div>
+                { todo.title }
+              </div>
+              <button>x</button>
             </div>
           )
         }) : null
