@@ -21,6 +21,7 @@ class App extends Component {
           updateEdit={ updateEdit }
         />
         <Send
+          text={ edit.text }
           onClick={ addTodo }
         />
         <List
