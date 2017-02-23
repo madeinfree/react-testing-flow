@@ -10,7 +10,19 @@ class Input extends Component {
       updateEdit
     } = this.props
 
-    updateEdit(e.target.value)
+    if (updateEdit !== undefined) {
+      updateEdit(e)
+    }
+  }
+
+  _onKeyDown(e) {
+    const {
+      onKeyDown
+    } = this.props
+
+    if (onKeyDown !== undefined) {
+      onKeyDown(e)
+    }
   }
 
   render() {
@@ -21,6 +33,7 @@ class Input extends Component {
       <div>
         <input
           value={ text }
+          onKeyDown={ this._onKeyDown.bind(this) }
           onChange={ this._onChangeText.bind(this) }
           type='text' />
       </div>
